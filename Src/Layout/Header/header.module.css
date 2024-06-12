@@ -1,0 +1,40 @@
+.main{
+    padding: 0px;
+    height: 3rem;
+    background-color: whitesmoke;
+    box-shadow: 0px 0px 3px 0px rgb(142, 142, 147) 
+} 
+.img{
+    width: 150px;
+    height: 30px;
+}
+.icons{
+    color: rgb(31 14 133);
+    font-size: 1.25rem;
+    padding: .5rem;
+}
+.sidebarToggler{
+    display: none !important;
+}
+
+@media screen and (max-width:768px) {
+    .sidebarToggler{
+        display:inline-block !important;
+    }
+}
+@media screen and (width >= 1400px) and (height >= 800px) {
+    .main{
+        height: 4rem;
+    }
+    .img{
+        width: 200px;
+        height: 40px;
+    }
+    .icons{
+        color: rgb(31 14 133);
+        font-size: 1.5rem;
+        padding: .75rem;
+    }
+}
+
+

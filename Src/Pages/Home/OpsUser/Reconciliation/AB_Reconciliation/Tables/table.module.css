@@ -1,0 +1,65 @@
+
+.table_responsive{
+    max-height: calc(100vh - 17rem);
+    overflow: auto;
+    border-bottom: 1px ridge #e5e5ea;
+}
+/* decreased max-height . Because we have email button wrapped in this table */
+.table_responsive_report{
+    max-height: calc(100vh - 19rem);
+    overflow: auto;
+    border-bottom: 1px ridge #e5e5ea;
+}
+.table_responsive thead,.table_responsive_report thead{
+    height: 2rem;
+    position: sticky;
+    box-shadow: 0px 1px 2px 0px rgb(148 148 156 / 75%);  
+    top: 0;
+    z-index: 10;    
+}
+th{
+    font-weight: 500;
+    vertical-align: middle;
+}
+th,td{
+    white-space: nowrap;
+}
+.total{
+    font-weight: bold;
+    color: rgb(31 14 133) !important;
+}
+.viewButton{
+    cursor: pointer;
+    padding: 0 .5rem;
+    color:rgb(13, 110, 253) !important;
+}
+/* below table is for reconMsg popup */
+.reconMsgTable{
+    border-bottom: 1px ridge #e5e5ea;
+}
+.reconMsgTable thead{
+    box-shadow: 0px 1px 2px 0px rgb(148 148 156 / 75%);
+    position: sticky;
+    top: -1rem;
+}
+@media screen and (height < 500px) {
+    .table_responsive{
+        max-height: 20rem;
+    }
+}
+@media screen and (width >= 1400px) and (height >= 800px) {
+    .table_responsive{
+        max-height: calc(100vh - 21rem);
+    }
+    .table_responsive_report{
+        max-height: calc(100vh - 23rem);
+    }
+}
+@media screen and (width >= 1600px) and (height >= 900px) {
+    .table_responsive{
+        max-height: calc(100vh - 23rem);
+    }
+    .table_responsive_report{
+        max-height: calc(100vh - 25rem);
+    }
+}

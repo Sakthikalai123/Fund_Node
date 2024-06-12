@@ -1,0 +1,119 @@
+.actionIcon{
+    cursor: pointer;    
+}
+.linkData{
+    cursor: pointer;
+    color : rgb(13,110,253);
+}
+.stats{
+    font-size: 10px;
+    padding: 0;
+    text-align: center;
+}
+.table {
+    --bs-table-bg: none !important;
+    border-bottom: 1px solid lightgrey;
+}
+.table th{    
+    display: table-cell;
+    vertical-align: middle;
+    position: sticky;
+    top:0;
+    padding: 0 .25rem;
+    font-weight: 500;
+}
+.table th,td{
+    white-space: nowrap;
+}
+.table thead{
+    height: 2rem;
+    background-color: rgb(191 201 235);
+    box-shadow: 0px 1px 2px 0px rgb(148 148 156 / 75%);  
+    position: sticky;
+    top:0;
+    cursor: pointer;
+}
+.ops_table_responsive{
+    max-height:calc(100vh - 20rem) ;
+    overflow: auto;
+    position: relative;
+    box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.5);
+}
+.client_table_responsive{
+    max-height:calc(100vh - 18rem) ;
+    overflow: auto;
+    position: relative;
+    box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.5);
+}
+.tableBody{
+    background-color: lightgrey;
+    opacity: .7;
+}
+.actionButton{
+    display: inline-block;   
+    font-weight: 500;
+    box-shadow: 0.5px 0.5px 1px 0px rgb(197 198 199);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    margin: 0 .25rem;
+}
+.approveButton{
+    background-color: rgb(38 220 102 / 25%);
+    color: green;
+}
+.approveButton:hover{
+    transform: translate(.5px,.5px);
+    background-color: rgb(38 220 102 / 40%);    
+}
+.rejectButton{
+background-color: rgb(234 84 73 / 25%);
+color: rgb(219, 56, 72);
+}
+.rejectButton:hover{
+    transform: translate(.5px,.5px);
+    background-color: rgb(234 84 73 / 35%);    
+}
+.disableButton{
+    background-color: rgba(0,0,0,.06);
+    cursor: not-allowed;
+    color: rgb(143, 143, 148);
+}
+/* Below query added to extend the table height when the screen height is small */
+@media screen and (height <= 500px) {
+    .ops_table_responsive{
+      max-height: 20rem ;      
+    }
+  }
+@media screen and (width >= 1400px) and (height >= 800px) {
+.ops_table_responsive{
+    max-height:calc(100vh - 24rem) ;     
+}
+.client_table_responsive{
+    max-height:calc(100vh - 22rem) ; ;
+}
+.stats{
+    font-size: 12px;
+}
+}
+@media screen and (width >= 1600px) and (height >= 900px){
+    .ops_table_responsive{
+        max-height:calc(100vh - 25rem) ;     
+    }
+    .client_table_responsive{
+        max-height:calc(100vh - 23rem) ; ;
+    }
+    .stats{
+        font-size: 14px;
+    }
+ }
+@media screen and (width >= 1800px) and (height >= 1000px) {
+    .ops_table_responsive{
+        max-height:calc(100vh - 26rem) ;     
+    }
+    .client_table_responsive{
+        max-height:calc(100vh - 24rem) ; ;
+    }
+    .stats{
+        font-size: 14px;
+    }
+ }

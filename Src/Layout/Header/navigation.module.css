@@ -1,0 +1,52 @@
+.main{
+  position: sticky;
+  top:3rem;
+  height: 2rem; 
+  display: flex;
+  align-items: center;
+  border-bottom-left-radius: 0.25rem;  
+  box-shadow: 0px 0px 3px 0px rgb(142, 142, 147) ;
+  background-color: rgb(31 14 133); 
+  z-index: 1020;
+  padding: 0 1rem;
+}
+ .navbar{
+  padding: 0%;  
+  display: flex;
+  align-items: center;  
+ }
+.link { 
+  color:white;  
+  margin: 0 .25rem;
+  padding: 0 .25rem;
+  border-radius: .25rem;
+  font-weight: 500;
+
+}
+.link:hover, .link:focus{   
+  color:rgb(31 14 133) ;
+  background-color: white;   
+}
+.active{  
+  background-color: white; 
+  color:rgb(31 14 133) ; 
+}
+
+
+ @media screen and (max-width:768px) {
+ .main{
+  display: none;
+ }
+} 
+
+@media screen and (width >= 1400px) and (height >= 800px) {
+  .main{
+    top:4rem;
+    height: 2.5rem;
+  }
+  .link{
+    padding: 0 .5rem;
+  }
+ }
+
+

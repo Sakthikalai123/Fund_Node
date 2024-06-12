@@ -1,0 +1,40 @@
+.modalHeader{
+    background-color: rgb(191 201 235 / 62%);
+}
+.modalBody{
+    padding: 1rem 0 0 0 ;
+    overflow-x: hidden;   
+}
+.modalBottom{
+    border-top:1px solid rgb(222 226 230);
+    padding: 1rem;
+    text-align: end;
+}
+.text{
+    margin-top: 0.25rem;
+    font-size: .875em;    
+}
+.show{
+    font-size: .875em;   
+    visibility: visible;
+    color:rgb(220, 53, 69) ;  
+}
+.hide{
+    font-size: .875em;   
+    visibility: hidden;
+}
+.colForm{
+    padding-top: calc(0.375rem + 1px);
+    padding-bottom: calc(0.375rem + 1px);
+}
+.invalidText{    
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: .875em;
+    color: #dc3545;
+}
+.passwordToggler{
+    position: relative;
+    left: 170px;
+    cursor: pointer;
+}

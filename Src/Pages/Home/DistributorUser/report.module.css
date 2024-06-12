@@ -1,0 +1,99 @@
+.body {
+  padding: 1rem 0;
+  overflow: auto;
+}
+.table {
+  --bs-table-bg: none !important;
+  border-bottom: 1px solid lightgrey;
+}
+.table th {
+  display: table-cell;
+  vertical-align: middle;
+  position: sticky;
+  top: 0;
+  padding: 0 0.25rem;
+  font-weight: 600;
+}
+.table th,
+td {
+  white-space: nowrap;
+}
+.table thead {
+  height: 4rem;
+  background-color: rgb(191 201 235);
+  box-shadow: 0px 1px 2px 0px rgb(148 148 156 / 75%);
+  position: sticky;
+  top: 0;
+  cursor: pointer;
+}
+
+.title {
+  font-weight: bold;
+  background-color: rgb(191 201 235 / 53%) !important;
+}
+.value {
+  font-weight: 500;
+}
+.dateRow {
+  background-color: rgb(247, 247, 250) !important;
+  border-top: 0.5px solid rgb(229, 229, 234) !important;
+}
+.dateText {
+  font-weight: bold;
+  color: rgb(87, 87, 87);
+}
+.date {
+  font-weight: 600;
+  color: rgb(87, 87, 87);
+}
+
+@media (width < 1400px) {
+  .date,
+  .dateText,
+  .title,
+  .head {
+    font-size: 12px;
+  }
+}
+@media (width >= 1400px) and (height >= 800px) {
+  .date,
+  .dateText,
+  .title,
+  .head {
+    font-size: 14px;
+  }
+  .value {
+    font-size: 13px;
+  }
+  .body {
+    padding: 1.25rem 0;
+  }
+}
+@media (width >= 1600px) and (height >= 900px) {
+  .date,
+  .dateText,
+  .title,
+  .head {
+    font-size: 16px;
+  }
+  .value {
+    font-size: 15px;
+  }
+  .body {
+    padding: 1.5rem 0;
+  }
+}
+@media (width >= 1800px) and (height >= 1000px) {
+  .date,
+  .dateText,
+  .title,
+  .head {
+    font-size: 18px;
+  }
+  .value {
+    font-size: 16px;
+  }
+  .body {
+    padding: 1.75rem 0;
+  }
+}

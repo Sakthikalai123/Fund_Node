@@ -1,0 +1,127 @@
+/* 
+.alert{
+    background-color: rgb(248 215 218) !important;
+    color: rgb(132 32 41) !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: .25rem;
+} */
+.input{
+    border: none;
+    background-color: inherit;
+    min-height: fit-content;
+    padding: 0 .25rem;   
+    background-image: none;
+}
+.input:focus{
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
+
+}
+.table {
+    --bs-table-bg: none !important;
+    white-space: nowrap;
+    border-bottom: 1px solid lightgrey;
+}
+.td{
+    padding: .25rem;
+}
+.table th{    
+    display: table-cell;
+    vertical-align: middle;
+    position: sticky;
+    top:0;
+    padding: 0 .25rem;
+    font-weight: 500;
+}
+.table thead{
+    height: 2rem;
+    background-color: rgb(191 201 235);
+    box-shadow: 0px 1px 2px 0px rgb(148 148 156 / 75%);
+    position: sticky;
+    top:0;
+    cursor: pointer;
+}
+.mainTextbox{
+    position: relative;
+}
+.show{
+    position: absolute;
+    z-index: 10;
+    top:0;   
+    display:block ;
+    padding: .5rem;
+    background-color: white; 
+    border: 1px solid lightgray;
+    border-radius: .5rem;   
+}
+/* .hide{
+    display:none
+}
+.show textarea{
+    border: none;
+} */
+.tableTop{
+    margin-top: .5rem;
+    padding: .25rem;   
+    background-color: rgb(247 247 250);
+}
+/* .crudButton{
+    border-radius: none !important;
+    border-right: .5px solid;
+} */
+/* .crudButton */
+.topLayout{   
+    background: linear-gradient(113deg, rgb(31 14 133), rgb(151 220 235));
+    border-radius: .5rem;
+}
+.topLayout div{
+ height: 1.5rem;
+ box-shadow: 0px 0px .5px 0px white;
+}
+.content{   
+    color: white;
+    display: flex;
+    align-items: center;
+    
+}
+.heading{
+    display: flex;
+    align-items: center;
+    color: white;    
+}
+.navigation{
+    margin:.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.warning{
+    padding: .5rem !important;
+    margin-bottom: 0 !important;
+ }
+ .warning button{
+    padding: 0.75rem 0.5rem !important;
+ }
+@media screen and (max-width:500px) {
+    .topLayout{   
+        background-color:rgb(31 14 133) !important;
+        background: none;
+        border-radius: .5rem;
+    }
+}
+@media screen and (width >= 1400px) and (height >= 800px) {
+    .topLayout div{
+        height: 2rem;
+    }
+    }
+@media screen and (width >= 1600px) and (height >= 900px){
+    .topLayout div{
+        height: 2.25rem;
+    }
+    }
+@media screen and (width >= 1800px) {
+    .topLayout div{
+        height: 2.5rem;
+    }
+    }
