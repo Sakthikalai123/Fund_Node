@@ -1,0 +1,194 @@
+image:
+  name: repository.marketnode.com:5000/node-marketnode:18
+  username: $NEXUS_USERNAME
+  password: $NEXUS_PASSWORD
+
+definitions:
+  services:
+    docker:
+      memory: 2048
+
+  steps:
+    - step: &build-publish
+        name: Build and publish to Nexus
+        script:
+          - export $(cat ENVIRONMENT_VARIABLES.txt | xargs)
+          - export projectVersion=$(jq -r .version package.json)
+          - echo $projectVersion
+          - echo -n $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin $DOCKER_REPO
+          - docker build --build-arg REACT_APP_URL=$REACT_APP_URL -f Dockerfile -t $DOCKER_REPO:$ENVIRONMENT_NAME-v$projectVersion -t $DOCKER_REPO:$ENVIRONMENT_NAME-latest .
+          - docker push $DOCKER_REPO:$ENVIRONMENT_NAME-v$projectVersion
+          - docker push $DOCKER_REPO:$ENVIRONMENT_NAME-latest
+        services:
+          - docker
+
+    - step: &build-publish-for-aks
+        name: Build and publish to Nexus for AKS
+        script:
+          - export $(cat AKS_ENVIRONMENT_VARIABLES.txt | xargs)
+          - echo -n $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin $DOCKER_REPO
+          - docker build --build-arg REACT_APP_URL=$REACT_APP_URL -f Dockerfile -t $DOCKER_REPO:$ENVIRONMENT_NAME-$BUILD_NUMBER .
+          - docker push $DOCKER_REPO:$ENVIRONMENT_NAME-$BUILD_NUMBER
+        services:
+          - docker
+
+    - step: &set-variables-dev
+        name: Set variables for dev
+        script:
+          - export ENVIRONMENT_NAME=dev
+          - source scripts/setup-env.sh
+          - printenv > ENVIRONMENT_VARIABLES.txt
+        artifacts:
+          - ENVIRONMENT_VARIABLES.txt
+
+    - step: &set-variables-aks-dev
+        name: Set variables for AKS dev
+        script:
+          - export ENVIRONMENT_NAME=dev
+          - source scripts/setup-aks-env.sh
+          - printenv > AKS_ENVIRONMENT_VARIABLES.txt
+        artifacts:
+          - AKS_ENVIRONMENT_VARIABLES.txt
+
+    - step: &set-variables-qa
+        name: Set variables for qa
+        script:
+          - export ENVIRONMENT_NAME=qa
+          - source scripts/setup-env.sh
+          - printenv > ENVIRONMENT_VARIABLES.txt
+        artifacts:
+          - ENVIRONMENT_VARIABLES.txt
+
+    - step: &set-variables-staging
+        name: Set variables for staging
+        script:
+          - export ENVIRONMENT_NAME=staging
+          - source scripts/setup-env.sh
+          - printenv > ENVIRONMENT_VARIABLES.txt
+        artifacts:
+          - ENVIRONMENT_VARIABLES.txt
+
+    - step: &set-variables-pt
+        name: Set variables for pt
+        script:
+          - export ENVIRONMENT_NAME=pt
+          - source scripts/setup-env.sh
+          - printenv > ENVIRONMENT_VARIABLES.txt
+        artifacts:
+          - ENVIRONMENT_VARIABLES.txt
+
+    - step: &set-variables-prod
+        name: Set variables for prod
+        script:
+          - export ENVIRONMENT_NAME=prod
+          - source scripts/setup-prod-env.sh
+          - printenv > ENVIRONMENT_VARIABLES.txt
+        artifacts:
+          - ENVIRONMENT_VARIABLES.txt
+
+    - step: &deploy-dev
+        name: Deploy to dev
+        image: mcr.microsoft.com/azure-cli
+        deployment: dev
+        script:
+          - export $(cat ENVIRONMENT_VARIABLES.txt | xargs)
+          - az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID && az webapp restart --resource-group $AZURE_RESOURCE_GROUP --name $AZURE_APP_SERVICE_NAME
+
+    - step: &deploy-aks-dev
+        name: Deploy to AKS dev
+        runs-on:
+          - 'self.hosted'
+          - 'fundnode.dev'
+        image:
+          name: repository.marketnode.com:5000/azure-cli-marketnode:latest
+          username: $NEXUS_USERNAME
+          password: $NEXUS_PASSWORD
+        deployment: dev
+        script:
+          - export $(cat AKS_ENVIRONMENT_VARIABLES.txt | xargs)
+          - az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
+          - az account set --subscription b82954ec-0f05-4f81-b229-da52257f6680
+          - az aks get-credentials --resource-group rg-fundnode-dev-aks --name fundnode-dev-aks --overwrite-existing
+          - kubelogin convert-kubeconfig -l azurecli
+          - source scripts/deploy-aks.sh
+
+    - step: &deploy-qa
+        name: Deploy to qa
+        image: mcr.microsoft.com/azure-cli
+        deployment: qa
+        script:
+          - export $(cat ENVIRONMENT_VARIABLES.txt | xargs)
+          - az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID && az webapp restart --resource-group $AZURE_RESOURCE_GROUP --name $AZURE_APP_SERVICE_NAME
+
+    - step: &deploy-staging
+        name: Deploy to staging
+        image: mcr.microsoft.com/azure-cli
+        deployment: staging
+        script:
+          - export $(cat ENVIRONMENT_VARIABLES.txt | xargs)
+          - az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID && az webapp restart --resource-group $AZURE_RESOURCE_GROUP --name $AZURE_APP_SERVICE_NAME
+
+    - step: &deploy-pt
+        name: Deploy to pt
+        image: mcr.microsoft.com/azure-cli
+        deployment: pt
+        script:
+          - export $(cat ENVIRONMENT_VARIABLES.txt | xargs)
+          - az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID && az webapp restart --resource-group $AZURE_RESOURCE_GROUP --name $AZURE_APP_SERVICE_NAME
+
+    - step: &deploy-prod
+        name: Deploy to prod
+        image: mcr.microsoft.com/azure-cli
+        trigger: manual
+        deployment: prod
+        script:
+          - export $(cat ENVIRONMENT_VARIABLES.txt | xargs)
+          - az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID && az webapp restart --resource-group $AZURE_RESOURCE_GROUP --name $AZURE_APP_SERVICE_NAME
+
+pipelines:
+  branches:
+    release/dev:
+      - step: *set-variables-dev
+      - step: *build-publish
+      - step: *deploy-dev
+    release/qa:
+      - step: *set-variables-qa
+      - step: *build-publish
+      - step: *deploy-qa
+    release/staging:
+      - step: *set-variables-staging
+      - step: *build-publish
+      - step: *deploy-staging
+    release/pt:
+      - step: *set-variables-pt
+      - step: *build-publish
+      - step: *deploy-pt
+    release/prod:
+      - step: *set-variables-prod
+      - step: *build-publish
+      - step: *deploy-prod
+  custom: # Pipelines that can only be triggered manually
+    deploy-to-dev-any-branches:
+      - step: *set-variables-dev
+      - step: *build-publish
+      - step: *deploy-dev
+    deploy-to-qa-any-branches:
+      - step: *set-variables-qa
+      - step: *build-publish
+      - step: *deploy-qa
+    deploy-to-staging-any-branches:
+      - step: *set-variables-staging
+      - step: *build-publish
+      - step: *deploy-staging
+    deploy-to-pt-any-branches:
+      - step: *set-variables-pt
+      - step: *build-publish
+      - step: *deploy-pt
+    deploy-to-prod:
+      - step: *set-variables-prod
+      - step: *build-publish
+      - step: *deploy-prod
+    deploy-to-aks-dev:
+      - step: *set-variables-aks-dev
+      - step: *build-publish-for-aks
+      - step: *deploy-aks-dev
