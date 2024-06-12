@@ -1,0 +1,19 @@
+.profileLayout{  
+    margin-top: 1rem; 
+    border: 1px solid #e5e5ea;
+    border-radius: 0.5rem;   
+}
+.profileHeader{
+    padding: 1rem;
+    border-bottom:1px solid #e5e5ea ;
+    display: flex;
+    justify-content: space-between;
+}
+.profileBody{
+    padding: 1rem;
+    border-radius: .5rem;
+    font-weight: 600;
+}
+.keyName{
+    color: rgb(142 142 147);
+}

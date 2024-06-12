@@ -1,0 +1,255 @@
+.container {
+  overflow: auto;
+  margin: .5rem 0;
+}
+.opsNavBar {
+  min-height: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;  
+  font-weight: 500;
+}
+.opsNavBar div {
+  height: fit-content;
+  width: fit-content;
+}
+.clientDateSelectorLayout {
+  min-height: 1rem;
+  display: flex;
+  margin-bottom: .5rem;
+  align-items: center; 
+}
+.opsDateFilter {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+.clientDateFilter {
+  display: flex;
+}
+.dateTitle {
+  font-weight: 600;
+  color: rgb(87, 87, 87);
+}
+.opsCustomDateSelector {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+.clientCustomDateSelector {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;  
+}
+.dateDropdown {
+  width: 10rem;
+}
+.title {
+  height: 1.5rem;
+  box-sizing: border-box;
+  font-weight: bold;
+  color: rgb(31 14 133);
+  display: flex;
+  align-items: center;
+}
+/* client row */
+/* .otherClientRow{
+    height: calc((100vh - 10rem) / 3);   
+    margin: 0;
+    box-sizing: border-box;
+}
+.uobkhDisClientRow{
+    height: calc((100vh - 10rem) / 2);   
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.opsRow{
+    height: calc((100vh - 12rem) / 3);   
+    margin: 0;
+    box-sizing: border-box;
+} */
+/* client chart height */
+/* .otherClientChart{
+    height:calc((100vh - 10rem) / 3) ;
+}
+.uobkhDisClientChart{
+    height:calc((100vh - 10rem) / 2) ;
+} */
+/* client chart height */
+/* .opsChart{
+    height:calc((100vh - 12rem) / 3) ;
+} */
+/* common chart style */
+.pieChart {
+  height: 9rem;
+}
+.otherPartBarChart {
+  width: 90%;
+  background-color: white;
+  height: 9rem;
+  border-radius: 0.5rem;
+  box-shadow: inset -1px -1px 1px 0px #c5c6c7;
+  /*  border: 1px solid #e2e9ef; */
+  background-color: aliceblue;
+  padding: 0 1rem;
+}
+.uobkhPartBarChart {
+  width: 90%;
+  background-color: white;
+  height: 12rem;
+  border-radius: 0.5rem;
+  box-shadow: inset -1px -1px 1px 0px #c5c6c7;
+  /*  border: 1px solid #e2e9ef; */
+  background-color: aliceblue;
+  padding: 0 1rem;
+}
+.opsCol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* This style is added given by chart.js suggestion */
+  margin-bottom: 0.5rem;
+}
+.clientCol{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* This style is added given by chart.js suggestion */
+  margin-bottom: 0.5rem;  
+}
+.annotation {
+  margin: 1rem;
+}
+.link {
+  display: inline-block;
+  color: rgb(13, 110, 253);
+  cursor: pointer;
+}
+.link:hover {
+  text-decoration: underline;
+}
+.successIndicator,
+.inprogressIndicator,
+.failedIndicator,
+.totalIndicator {
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 0.25rem;
+  margin: 0.25rem 0.5rem;
+}
+.totalIndicator {
+  background-color: rgb(94, 176, 247);
+}
+.successIndicator {
+  background-color: rgb(144, 238, 144);
+}
+.inprogressIndicator {
+  background-color: rgb(252, 244, 3);
+}
+.failedIndicator {
+  background-color: rgb(245, 93, 81);
+}
+.warning {
+  color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: medium;
+  font-weight: 700;
+  height: 50vh;
+}
+/* @media screen and (width <= 992px) {
+    .uobkhDisClientRow,.otherClientRow,.opsRow{
+        height: auto;
+    }
+    .chart{       
+        margin: .5rem 0;
+    }
+    .mainLayout{
+        height: auto;
+    }
+} */
+@media screen and (width <= 576px) {
+  .opsNavBar {
+    flex-direction: column;
+    align-items: unset;
+  }
+  .clientDateFilter {
+    flex-direction: column;
+    align-items: unset;
+  }
+  .opsDateFilter {    
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .clientCustomDateSelector {
+    padding: 0;
+    margin: 0.25rem;
+  }
+}
+@media screen and (width <= 600px) {
+  .clientDateSelectorLayout {
+    height: auto;
+  }
+}
+@media screen and (height >= 600px) {
+  .pieChart{
+    height:calc((100vh - 11rem) / 3) ;
+    max-height: 15rem;    
+  }  
+  .otherPartBarChart{
+    height:calc((100vh - 13rem) / 3) ;
+  }
+  .clientCol .otherPartBarChart{
+    height: calc((100vh - 11rem) / 3);
+  }
+  .uobkhPartBarChart{
+    height:calc((100vh - 12rem) / 3) 
+  }
+  .otherPartBarChart,.uobkhPartBarChart{
+    max-height: 20rem;
+    max-width: 80rem;
+  } 
+
+  }
+@media screen and (width >= 1200px) {
+  .opsCustomDateSelector{
+    position: absolute;
+    top :2rem;
+
+  }
+}
+@media screen and (width >= 1400px) and (height >=800px) {
+  .pieChart{
+    height:calc((100vh - 13rem) / 3) ;
+    max-height: 15rem;    
+  }  
+  .otherPartBarChart{
+    height:calc((100vh - 15rem) / 3) ;
+  }
+  .clientCol .otherPartBarChart{
+    height:calc((100vh - 13rem) / 3) ;
+  }
+  .uobkhPartBarChart{
+    height:calc((100vh - 10rem) / 3) 
+  } 
+  .title{
+    height: 2rem;
+  }
+  .dateDropdown{
+    width: 12rem;
+  }
+}
+/* @media screen and (height <= 500px ){
+    .uobkhDisClientRow,.otherClientRow,.opsRow{
+        height: auto;
+    }
+    .chart{
+        height: 10rem;
+    }
+} */
