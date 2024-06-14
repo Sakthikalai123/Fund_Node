@@ -24,7 +24,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "rsuite": "^5.50.0",
     "serve": "^14.2.0",
@@ -42,7 +42,7 @@
     "build-qa": "env-cmd -e qa react-scripts build",
     "build-stage": "env-cmd -e stage react-scripts build",
     "build-prod": "env-cmd -e production react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -69,6 +69,7 @@
     }
   },
   "devDependencies": {
-    "@babel/plugin-transform-private-property-in-object": "^7.23.4"
+    "@babel/plugin-transform-private-property-in-object": "^7.23.4",
+    "redux-mock-store": "^1.5.4"
   }
 }
