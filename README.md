@@ -28,6 +28,7 @@ The app will be available at http://localhost:3000.
 For env variables refer .env-cmdrc.json file
 
 ## Folder Structure
+```plaintext
 src/
 ├── Asset/
 │   ├── # Static assets like images and fonts
