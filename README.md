@@ -118,7 +118,7 @@ src/
 │   ├── # Main Application
 ├── index.js
 │   ├── # Application starts here (Application + Redux Store)
-
+plaintext```
 ## Contact Information
 For any questions or feedback, contact sakthivel.kalaiselvan@theoptimum.net.
 
