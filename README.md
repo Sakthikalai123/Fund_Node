@@ -28,7 +28,7 @@ The app will be available at http://localhost:3000.
 For env variables refer .env-cmdrc.json file
 
 ## Folder Structure
-```plaintext
+```
 src/
 ├── Asset/
 │   ├── # Static assets like images and fonts
@@ -118,7 +118,7 @@ src/
 │   ├── # Main Application
 ├── index.js
 │   ├── # Application starts here (Application + Redux Store)
-plaintext```
+
 ## Contact Information
 For any questions or feedback, contact sakthivel.kalaiselvan@theoptimum.net.
 
